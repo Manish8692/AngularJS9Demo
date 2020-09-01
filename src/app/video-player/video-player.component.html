@@ -1,0 +1,27 @@
+
+<div class="row pb-3">
+
+  <section class="col-lg-4 col-sm-12 pt-2">
+    <video [src]="selectedVideoName" width="400" controls>
+      <source type="video/mp4">
+      <source type="video/ogg" />
+      Your browser does not support HTML video.
+    </video>
+  </section>
+
+  <section class="col-lg-8 col-sm-12 pt-2">
+    <div class="row">
+      <section class="col-lg-3 col-sm-3 bg-secondary" *ngFor="let video of videoList; let i = index">
+        <!--<div class="card-header bg-secondary" id="card1"> -->
+        <h2 class="mb-0"> 
+          <button class="btn btn-link text-white" type="button" (click)="playSelectedVideo(i)">
+            {{(i+1) + '. ' + video.videoName}}
+          </button>
+        </h2>
+        <!-- </div>-->
+      </section>
+    </div>
+    
+  </section>
+
+</div>

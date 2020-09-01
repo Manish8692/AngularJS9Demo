@@ -1,0 +1,790 @@
+<div class="container mb-4" *ngIf="!isPreview">
+  <div class="row fixed-bottom">
+    <section class="col-lg-12 col-md-12 col-sm-12">
+      <button type="button" class="btn btn-warning btn-sm btn-block" (click)="showPreview(1)">
+       <strong> Preview</strong>
+      </button>
+    </section>
+  </div>
+
+  <form [formGroup]="resumeForm" class="mt-3">
+  
+    <!--First and Last Name-->
+    <div class="row">     
+
+      <section class="col-lg-6 col-md-6 col-sm-6">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">First Name</span>
+          </div>
+          <input type="text" class="form-control" placeholder="Enter First Name" aria-label="firstName" aria-describedby="basic-addon1" formControlName="firstName">
+        </div>
+      </section>
+
+      <section class="col-lg-6 col-md-6 col-sm-6">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Last Name</span>
+          </div>
+          <input type="text" class="form-control" placeholder="Enter Last Name" aria-label="lastName" aria-describedby="basic-addon1" formControlName="lastName">
+        </div>
+      </section>
+    </div>
+      
+    <!--Designation-->
+    <div class="row">
+
+      <section class="col-lg-12 col-md-12 col-sm-12">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Designation</span>
+          </div>
+          <input type="text" class="form-control" placeholder="Enter Current Desigantion" aria-label="designation" aria-describedby="basic-addon1" formControlName="currentDesignation">
+        </div>
+      </section>          
+
+    </div>
+
+    <!--Summary-->
+    <div class="row">
+
+      <section class="col-lg-12 col-md-12 col-sm-12">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Summary</span>
+          </div>
+          <input type="text" class="form-control" placeholder="Enter Resume Summary" aria-label="summary" aria-describedby="basic-addon1" formControlName="summary">
+        </div>
+      </section>          
+
+    </div>
+
+    <!--Email Phone Linkedin-->
+    <div class="row">
+
+      <section class="col-lg-6 col-md-6 col-sm-6">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Email ID</span>
+          </div>
+          <input type="text" class="form-control" placeholder="Enter Email Address" aria-label="emailId" aria-describedby="basic-addon1" formControlName="emailId">
+        </div>
+      </section>   
+      
+      <section class="col-lg-6 col-md-6 col-sm-6">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Phone Numner</span>
+          </div>
+          <input type="text" class="form-control" placeholder="Enter Phone Number" aria-label="phoneNumber" aria-describedby="basic-addon1" formControlName="phoneNumber">
+        </div>
+      </section> 
+      
+      <section class="col-lg-6 col-md-6 col-sm-6">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Location</span>
+          </div>
+          <input type="text" class="form-control" placeholder="Enter Current Location" aria-label="currentLocation" aria-describedby="basic-addon1" formControlName="currentLocation">
+        </div>
+      </section>
+
+      <section class="col-lg-6 col-md-6 col-sm-6">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Linkdin</span>
+          </div>
+          <input type="text" class="form-control" placeholder="Enter Linkdin Profile Link" aria-label="linkdinLink" aria-describedby="basic-addon1" formControlName="linkdinLink">
+        </div>
+      </section>
+
+    </div>
+
+    <!--Objective-->
+    <div class="row">
+        <section class="col-lg-10 col-md-10 col-sm-10">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">Objective</span>
+            </div>
+            <input type="text" class="form-control" placeholder="Enter Objective" aria-label="objective" aria-describedby="basic-addon1" formControlName="objective">
+          </div>
+        </section>
+
+        <section class="col-lg-2 col-md-2 col-sm-2">
+          <button type="button" class="btn btn-success btn-md" placeholder="Display on Preview" *ngIf="isShowObjective" (click)="isShowObjective = false"><i class="fa fa-check"></i> Show</button>
+          <button type="button" class="btn btn-danger btn-md" placeholder="Not Display on Preview" *ngIf="!isShowObjective" (click)="isShowObjective = true"><i class="fa fa-times"></i> Hide</button>
+        </section>
+    </div>
+
+    <!--Skills-->
+    <div class="row">
+
+      <section class="col-lg-6 col-md-6 col-sm-6">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Skill</span>
+          </div>
+          <input type="text" class="form-control" placeholder="Enter Skill" aria-label="skill" aria-describedby="basic-addon1" formControlName="skill">
+        </div>
+      </section>   
+      
+      <section class="col-lg-6 col-md-6 col-sm-6 text-justify">
+          <button type="button" class="btn btn-success btn-md" (click)="addSkill()"><i class="fa fa-plus text-left"></i> Add Skill </button>
+      </section> 
+
+    </div>
+
+    <div class="row">
+      <section class="col-lg-12 col-md-12 col-sm-12">
+        <span *ngFor="let skill of resumeDetail.skills;index as i;" class="background-perfectBlue mr-2 mb-2 p-1 rounded text-center text-justify"> {{skill}} 
+          <i class="fa fa-trash ml-2" (click)="removeSkill(i)"></i>
+        </span>
+      </section>
+    </div>
+
+  <!--Work Experience-->
+  <div formGroupName="workExperience">
+    <h4 class="text-dark text-perfectBlue mt-4 mb-3"> <strong>WORK EXPERIENCE </strong> 
+      <i class="fa fa-plus fa-1x float-right btn btn-primary" (click)="hideWorkExperience = false" *ngIf="hideWorkExperience"></i>
+      <i class="fa fa-minus fa-1x float-right btn btn-primary" (click)="hideWorkExperience = true" *ngIf="!hideWorkExperience"></i>
+      <button class="btn btn-md btn-success float-right mr-3" *ngIf="!hideWorkExperience" (click)="addWorkExperience()"><i class="fa fa-plus"></i> Add Experience</button>
+    </h4>
+    <div *ngIf="!hideWorkExperience">
+    <div class="row">
+
+      <section class="col-lg-6 col-md-6 col-sm-6">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Project Name</span>
+          </div>
+          <input type="text" class="form-control" placeholder="Enter Project Name" aria-label="projectName" aria-describedby="basic-addon1" formControlName="projectName">
+        </div>
+      </section>  
+
+      <section class="col-lg-6 col-md-6 col-sm-6">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Designation</span>
+          </div>
+          <input type="text" class="form-control" placeholder="Enter Designation" aria-label="designation" aria-describedby="basic-addon1" formControlName="designation">
+        </div>
+      </section>   
+
+      <section class="col-lg-6 col-md-6 col-sm-6">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Organization</span>
+          </div>
+          <input type="text" class="form-control" placeholder="Enter Organization" aria-label="organization" aria-describedby="basic-addon1" formControlName="organization">
+        </div>
+      </section>  
+
+      <section class="col-lg-6 col-md-6 col-sm-6">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">From Date</span>
+          </div>
+          <input type="date" class="form-control" placeholder="Enter Designation" aria-label="fromDate" aria-describedby="basic-addon1" formControlName="fromDate">
+        </div>
+      </section>   
+
+      <section class="col-lg-6 col-md-6 col-sm-6">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">End Date</span>
+          </div>
+          <input type="date" class="form-control" placeholder="Enter Designation" aria-label="toDate" aria-describedby="basic-addon1" formControlName="toDate">
+        </div>
+      </section>  
+
+      <section class="col-lg-6 col-md-6 col-sm-6">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Location</span>
+          </div>
+          <input type="text" class="form-control" placeholder="Enter Location" aria-label="location" aria-describedby="basic-addon1" formControlName="location">
+        </div>
+      </section> 
+
+    </div>
+
+    <div class="row">
+
+      <section class="col-lg-8 col-md-8 col-sm-8">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Description Line</span>
+          </div>
+          <input type="text" class="form-control" placeholder="Enter Description" aria-label="projectDescription" aria-describedby="basic-addon1" formControlName="projectDescription">
+        </div>
+      </section> 
+
+      <section class="col-lg-4 col-md-4 col-sm-4">
+        <button type="button" class="btn btn-success btn-md" (click)="addWorkExperienceDescription()"><i class="fa fa-plus text-left"></i> Add Description </button>
+      </section> 
+
+    </div>
+
+    <div class="row">
+      <section class="col-lg-12 col-md-12 col-sm-12">
+        <table class="table">
+          <thead>
+            <tr class="background-perfectBlue text-white">
+              <th>Description Lines</th>
+              <th>Action </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let desc of description; index as i;">
+              <td>{{desc}}</td>
+              <td><i class="fa fa-trash" (click)="removeDescription(i)"></i></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </div>
+    </div>
+
+    <div class="row" *ngIf="hideWorkExperience">
+      <section class="col-lg-12 col-md-12 col-sm-12"><h5><strong> Added Experiences </strong></h5></section>
+      
+      <section class="col-lg-12 col-md-12 col-sm-12">
+        <table class="table">
+          <thead>
+            <tr class="background-perfectBlue text-white">
+              <td *ngFor="let item of resumeForm.value.workExperience | keyvalue"> {{item.key | titlecase}}</td>
+              <td>Action</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let obj of resumeDetail.workExperiences; index as i;">
+                <td *ngFor="let o of obj | keyvalue">
+                  <span *ngIf = "!o.key.includes('Date')"> {{ obj[o.key]  }} </span>
+                  <span *ngIf = "o.key.includes('Date')"> {{ obj[o.key] | date : 'MM/yyyy' }}</span>
+                </td>
+                <td><i class="fa fa-trash" (click)="removeWorkExperience(i)"></i></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </div>
+  </div>
+
+  <!--Education-->
+  <div formGroupName="education">
+    <h4 class="text-dark text-perfectBlue mt-4 mb-3"> <strong>EDUCATION </strong> 
+      <i class="fa fa-plus fa-1x float-right btn btn-primary" (click)="hideEducation = false" *ngIf="hideEducation"></i>
+      <i class="fa fa-minus fa-1x float-right btn btn-primary" (click)="hideEducation = true" *ngIf="!hideEducation"></i>
+      <button class="btn btn-md btn-success float-right mr-3" *ngIf="!hideEducation" (click)="addEducation()"><i class="fa fa-plus"></i> Add Education</button>
+    </h4>
+
+    <div *ngIf="!hideEducation">
+    <div class="row">
+
+      <section class="col-lg-6 col-md-6 col-sm-6">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Stream</span>
+          </div>
+          <input type="text" class="form-control" placeholder="Enter Stream Or Field" aria-label="streamOrField" aria-describedby="basic-addon1" formControlName="streamOrField">
+        </div>
+      </section>   
+
+      <section class="col-lg-6 col-md-6 col-sm-6">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">University</span>
+          </div>
+          <input type="text" class="form-control" placeholder="Enter University" aria-label="university" aria-describedby="basic-addon1" formControlName="university">
+        </div>
+      </section>  
+
+      <section class="col-lg-6 col-md-6 col-sm-6">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">From Date</span>
+          </div>
+          <input type="date" class="form-control" placeholder="Enter From Date" aria-label="fromDate" aria-describedby="basic-addon1" formControlName="fromDate">
+        </div>
+      </section>   
+
+      <section class="col-lg-6 col-md-6 col-sm-6">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">End Date</span>
+          </div>
+          <input type="date" class="form-control" placeholder="Enter End Date" aria-label="toDate" aria-describedby="basic-addon1" formControlName="toDate">
+        </div>
+      </section>  
+
+      <section class="col-lg-6 col-md-6 col-sm-6">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Percentage/Grad</span>
+          </div>
+          <input type="text" class="form-control" placeholder="Enter Percentage Or Grad" aria-label="percentage" aria-describedby="basic-addon1" formControlName="percentage">
+        </div>
+      </section> 
+
+    </div>
+    </div>
+
+    <div class="row" *ngIf="hideEducation">
+      <section class="col-lg-12 col-md-12 col-sm-12"><h5><strong> Added Educations </strong></h5></section>
+      
+      <section class="col-lg-12 col-md-12 col-sm-12">
+        <table class="table">
+          <thead>
+            <tr class="background-perfectBlue text-white">
+              <td *ngFor="let item of resumeForm.value.education | keyvalue"> {{item.key | titlecase}}</td>
+              <td>Action</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let obj of resumeDetail.educations; index as i;">
+                <td *ngFor="let o of obj | keyvalue">
+                  <span *ngIf = "!o.key.includes('Date')"> {{ obj[o.key]  }} </span>
+                  <span *ngIf = "o.key.includes('Date')"> {{ obj[o.key] | date : 'MM/yyyy' }}</span>
+                </td>
+                <td><i class="fa fa-trash" (click)="removeEducation(i)"></i></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </div>
+
+  </div>
+ 
+  <!--Organization-->
+  <div formGroupName="organization">
+    <h4 class="text-dark text-perfectBlue mt-4 mb-3"> <strong>Organization </strong> 
+      <i class="fa fa-plus fa-1x float-right btn btn-primary" (click)="hideOrganization = false" *ngIf="hideOrganization"></i>
+      <i class="fa fa-minus fa-1x float-right btn btn-primary" (click)="hideOrganization = true" *ngIf="!hideOrganization"></i>
+      <button class="btn btn-md btn-success float-right mr-3" *ngIf="!hideOrganization" (click)="addOrganization()"><i class="fa fa-plus"></i> Add Organization</button>
+    </h4>
+    
+    <div *ngIf="!hideOrganization">
+      <div class="row">
+  
+        <section class="col-lg-6 col-md-6 col-sm-6">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">Company Name</span>
+            </div>
+            <input type="text" class="form-control" placeholder="Enter Company Name" aria-label="name" aria-describedby="basic-addon1" formControlName="name">
+          </div>
+        </section>   
+  
+        <section class="col-lg-6 col-md-6 col-sm-6">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">Designation</span>
+            </div>
+            <input type="text" class="form-control" placeholder="Enter Designation" aria-label="designation" aria-describedby="basic-addon1" formControlName="designation">
+          </div>
+        </section>  
+  
+        <section class="col-lg-6 col-md-6 col-sm-6">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">From Date</span>
+            </div>
+            <input type="date" class="form-control" placeholder="Enter From Date" aria-label="fromDate" aria-describedby="basic-addon1" formControlName="fromDate">
+          </div>
+        </section>   
+  
+        <section class="col-lg-6 col-md-6 col-sm-6">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">End Date</span>
+            </div>
+            <input type="date" class="form-control" placeholder="Enter End Date" aria-label="toDate" aria-describedby="basic-addon1" formControlName="toDate">
+          </div>
+        </section>  
+  
+      </div>
+      </div>
+  
+    <div class="row" *ngIf="hideOrganization">
+        <section class="col-lg-12 col-md-12 col-sm-12"><h5><strong> Added Organizations </strong></h5></section>
+        
+        <section class="col-lg-12 col-md-12 col-sm-12">
+          <table class="table">
+            <thead>
+              <tr class="background-perfectBlue text-white">
+                <td *ngFor="let item of resumeForm.value.organization | keyvalue"> {{item.key | titlecase}}</td>
+                <td>Action</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let obj of resumeDetail.organizations; index as i;">
+                  <td *ngFor="let o of obj | keyvalue">
+                    <span *ngIf = "!o.key.includes('Date')"> {{ obj[o.key]  }} </span>
+                    <span *ngIf = "o.key.includes('Date')"> {{ o.key == 'toDate' && obj[o.key] == null ? 'Present' : obj[o.key] | date : 'MM/yyyy' }}</span>
+                  </td>
+                  <td><i class="fa fa-trash" (click)="removeOrganization(i)"></i></td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+    </div>
+
+  </div>
+
+    <!--Course Certificate-->
+  <div formGroupName="courseOrCertificate">
+      <h4 class="text-dark text-perfectBlue mt-4 mb-3"> <strong>Certificate </strong> 
+        <i class="fa fa-plus fa-1x float-right btn btn-primary" (click)="hideCertificate = false" *ngIf="hideCertificate"></i>
+        <i class="fa fa-minus fa-1x float-right btn btn-primary" (click)="hideCertificate = true" *ngIf="!hideCertificate"></i>
+        <button class="btn btn-md btn-success float-right mr-3" *ngIf="!hideCertificate" (click)="addCertificate()"><i class="fa fa-plus"></i> Add Certificate</button>
+        
+        <button type="button" class="btn btn-success btn-md" placeholder="Display on Preview" *ngIf="isShowCourseCertificate" (click)="isShowCourseCertificate = false"><i class="fa fa-check"></i> Show</button>
+        <button type="button" class="btn btn-danger btn-md" placeholder="Not Display on Preview" *ngIf="!isShowCourseCertificate" (click)="isShowCourseCertificate = true"><i class="fa fa-times"></i> Hide</button>
+      </h4>
+      
+      <div *ngIf="!hideCertificate">
+        <div class="row">
+
+    
+          <section class="col-lg-6 col-md-6 col-sm-6">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Certificate Name</span>
+              </div>
+              <input type="text" class="form-control" placeholder="Enter Certificate Name" aria-label="courseOrCertificateName" aria-describedby="basic-addon1" formControlName="courseOrCertificateName">
+            </div>
+          </section>   
+    
+          <section class="col-lg-6 col-md-6 col-sm-6">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Platform</span>
+              </div>
+              <input type="text" class="form-control" placeholder="Enter Platform" aria-label="platform" aria-describedby="basic-addon1" formControlName="platform">
+            </div>
+          </section>  
+    
+          <section class="col-lg-6 col-md-6 col-sm-6">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Complition Date</span>
+              </div>
+              <input type="date" class="form-control" placeholder="Enter Complition Date" aria-label="complitionDate" aria-describedby="basic-addon1" formControlName="complitionDate">
+            </div>
+          </section>       
+          
+        </div>
+        </div>
+    
+      <div class="row" *ngIf="hideCertificate">
+          <section class="col-lg-12 col-md-12 col-sm-12"><h5><strong> Added Certificates </strong></h5></section>
+          
+          <section class="col-lg-12 col-md-12 col-sm-12">
+            <table class="table">
+              <thead>
+                <tr class="background-perfectBlue text-white">
+                  <td *ngFor="let item of resumeForm.value.courseOrCertificate | keyvalue"> {{item.key | titlecase}}</td>
+                  <td>Action</td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let obj of resumeDetail.courseOrCertificates; index as i;">
+                    <td *ngFor="let o of obj | keyvalue">
+                      <span *ngIf = "!o.key.includes('Date')"> {{ obj[o.key]  }} </span>
+                      <span *ngIf = "o.key.includes('Date')"> {{ o.key == 'toDate' && obj[o.key] == null ? 'Present' : obj[o.key] | date : 'MM/yyyy' }}</span>
+                    </td>
+                    <td><i class="fa fa-trash" (click)="removeCertificate(i)"></i></td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+      </div>
+  
+    </div>
+  
+  <!--<div formGroupName="knownLanguage">
+    <h4 class="text-dark text-perfectBlue mt-4 mb-3"> <strong>Language </strong> 
+      <i class="fa fa-plus fa-1x float-right btn btn-primary" (click)="hideLanguage = false" *ngIf="hideLanguage"></i>
+      <i class="fa fa-minus fa-1x float-right btn btn-primary" (click)="hideLanguage = true" *ngIf="!hideLanguage"></i>
+      <button class="btn btn-md btn-success float-right mr-3" *ngIf="!hideLanguage" (click)="addLanguage()"><i class="fa fa-plus"></i> Add Language</button>
+    </h4>
+
+    <div *ngIf="!hideLanguage">
+      <div class="row">
+  
+        <section class="col-lg-6 col-md-6 col-sm-6">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">Language</span>
+            </div>
+            <input type="text" class="form-control" placeholder="Enter Language" aria-label="name" aria-describedby="basic-addon1" formControlName="name">
+          </div>
+        </section>   
+  
+        <section class="col-lg-6 col-md-6 col-sm-6">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">Level</span>
+            </div>
+            <input type="text" class="form-control" placeholder="Enter level" aria-label="level" aria-describedby="basic-addon1" formControlName="level">
+          </div>
+        </section>  
+
+      </div>
+
+    </div>
+
+    <div class="row" *ngIf="hideLanguage">
+      <section class="col-lg-12 col-md-12 col-sm-12"><h5><strong> Added Languages </strong></h5></section>
+        
+        <section class="col-lg-12 col-md-12 col-sm-12">
+          <table class="table">
+            <thead>
+              <tr class="background-perfectBlue text-white">
+                <td *ngFor="let item of resumeForm.value.knownLanguage | keyvalue"> {{item.key | titlecase}}</td>
+                <td>Action</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let obj of resumeDetail.knownLanguages; index as i;">
+                  <td *ngFor="let o of obj | keyvalue">
+                    <span> {{ obj[o.key]  }} </span>                    
+                  </td>
+                  <td><i class="fa fa-trash" (click)="removeLanguage(i)"></i></td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+    </div>
+    
+  </div>-->
+
+  <div formGroupName="personalDetail">
+    <h4 class="text-dark text-perfectBlue mt-4 mb-3"> <strong>Personal Detail </strong> </h4>
+
+      <div class="row"> 
+
+        <section class="col-lg-6 col-md-6 col-sm-6">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">Permanent Address</span>
+            </div>
+            <input type="text" class="form-control" placeholder="Enter Permanent Address" aria-label="permenentAddress" aria-describedby="basic-addon1" formControlName="permanentAddress">
+          </div>
+        </section> 
+
+        <section class="col-lg-6 col-md-6 col-sm-6">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">Date Of Birth</span>
+            </div>
+            <input type="date" class="form-control" placeholder="Enter Date Of Birth" aria-label="dateOfBirth" aria-describedby="basic-addon1" formControlName="dateOfBirth">
+          </div>
+        </section>   
+  
+        <section class="col-lg-6 col-md-6 col-sm-6">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">Gender</span>
+            </div>
+            <input type="text" class="form-control" placeholder="Enter Male or Female" aria-label="gender" aria-describedby="basic-addon1" formControlName="gender">
+          </div>
+        </section> 
+
+        <section class="col-lg-6 col-md-6 col-sm-6">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">Marital Status</span>
+            </div>
+            <input type="text" class="form-control" placeholder="Enter Marital Status" aria-label="maritalStatus" aria-describedby="basic-addon1" formControlName="maritalStatus">
+          </div>
+        </section>
+
+        <section class="col-lg-6 col-md-6 col-sm-6">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">Nationality</span>
+            </div>
+            <input type="text" class="form-control" placeholder="Enter Nationality" aria-label="nationality" aria-describedby="basic-addon1" formControlName="nationality">
+          </div>
+        </section>
+
+        <section class="col-lg-6 col-md-6 col-sm-6">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">Language Known</span>
+            </div>
+            <input type="text" class="form-control" placeholder="Enter Language Known" aria-label="languageKnown" aria-describedby="basic-addon1" formControlName="languageKnown">
+          </div>
+        </section>
+
+        <section class="col-lg-6 col-md-6 col-sm-6">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">Hobbies</span>
+            </div>
+            <input type="text" class="form-control" placeholder="Enter Hobbies" aria-label="hobbies" aria-describedby="basic-addon1" formControlName="hobbies">
+          </div>
+        </section>
+
+      </div>
+
+  </div>
+
+</form>
+</div> 
+
+
+<!-- Preview -->
+<div class="container rounded p-2" *ngIf="isPreview">
+  <h2 class="text-perfectBlue mb-0" (click)="showPreview(0)"><strong>{{resumeDetail.firstName + ' ' + resumeDetail.lastName}}</strong></h2>
+  <h5 class="text-muted pd-0 mt-0">{{resumeDetail.designation}}</h5>
+  <h6 class="text-dark text-justify pd-0">{{resumeDetail.summary}}</h6>
+  <div class="row border-top border-bottom border-Width-2x border-dark mt-3">
+    <section class="col-lg-12 col-sm-12 text-center text-dark p-2">
+      <span class="text-center mr-5">
+        <i class="fa fa-envelope text-perfectBlue"></i> {{resumeDetail.emailId}}
+      </span>
+      <span class="text-center mr-5">
+        <i class="fa fa-mobile text-perfectBlue"></i> {{resumeDetail.phoneNumber}}
+      </span>
+      <span class="text-center mr-5">
+        <i class="fa fa-map-marker text-perfectBlue"></i>  {{resumeDetail.currentLocation}}
+      </span>
+      <span class="text-center mr-5">
+        <i class="fa fa-linkedin text-perfectBlue"></i> {{resumeDetail.linkdinLink}}
+      </span>
+    </section>
+  </div>
+
+  <div *ngIf="isShowObjective">
+    <h4 class="text-dark text-perfectBlue mt-3 mb-3"> <strong>OBJECTIVE </strong> </h4>
+    <div class="row ml-1">
+      <section class="col-lg-12 col-sm-12 col-md-2" *ngFor="let skill of resumeDetail.skills; index as i;">
+        <h6 class="text-justify"> {{resumeDetail.objective}} </h6> 
+      </section>
+    </div>
+  </div>
+
+  <h4 class="text-dark text-perfectBlue mt-3 mb-3"> <strong>SKILLS </strong> </h4>
+  <div class="row ml-1">
+    <section class="col-lg-2 col-sm-2 col-md-1 text-justify background-perfectBlue mr-2 mb-2 p-1 rounded text-center" *ngFor="let skill of resumeDetail.skills; index as i;">
+      <span> {{skill}} </span> 
+    </section>
+  </div>
+
+  <h4 class="text-dark text-perfectBlue mt-4"> <strong>WORK EXPERIENCE </strong> </h4>
+  <div *ngFor="let experience of resumeDetail.workExperiences; index as i" class="mb-4">
+    <h5 class="text-dark m-0"> <strong>{{experience.projectName}}</strong>  <span class="text-muted">{{" ("+ experience.designation + ")"}} </span></h5>
+    <h5 class="text-dark m-0">{{experience.organization}}</h5>
+    <p class="text-muted mt-0 mb-1 font-italic">{{experience.fromDate | date : 'MM/yyyy'}} - {{experience.toDate == null ? 'Present' : (experience.toDate | date : 'MM/yyyy')  }} <span class="float-lg-right float-md-right float-sm-right">{{experience.location}}</span></p>
+    <ul class="wrkExpListStyle">
+      <li class="m-0 p-0 border-0" *ngFor="let item of experience.projectDescription">
+        <h6 class="text-justify m-0">
+          {{item}}
+        </h6>
+      </li>
+    </ul>
+  </div>
+
+  <h4 class="text-dark text-perfectBlue mt-5 mb-1"> <strong>EDUCATION </strong> </h4>
+  <div class="row">
+    <div class="col-lg-6 col-sm-6 col-md-4 mb-2" *ngFor="let edu of resumeDetail.educations; index as i">
+      <h5 class="text-dark m-0"> <strong>{{edu.streamOrField}} </strong></h5>
+      <h5 class="text-dark m-0">{{edu.university}}</h5>
+      <p class="text-muted m-0 font-italic">{{edu.fromDate | date : 'MM/yyyy'}} - {{edu.toDate | date : 'MM/yyyy'}} </p>  
+    </div>
+  </div>
+
+  <div *ngIf="isShowCourseCertificate">
+    <h4 class="text-dark text-perfectBlue mt-4 mb-1"> <strong>CERTIFICATES </strong> </h4>
+    <div class="row">
+      <div class="col-lg-6 col-sm-6 col-md-6 mb-2" *ngFor="let certi of resumeDetail.courseOrCertificates; index as i">
+        <h5 class="text-dark m-0"> <strong>{{certi.courseOrCertificateName}} </strong></h5>
+        <h5 class="text-dark m-0">{{certi.platform}}</h5>
+        <p class="text-muted m-0 font-italic">{{certi.complitionDate | date : 'MM/yyyy'}} </p>
+      </div>
+    </div>
+  </div>
+ 
+
+  <h4 class="text-dark text-perfectBlue mt-4 mb-1"> <strong>ORGANIZATION </strong> </h4>
+  <div class="row">
+  <div class="col-lg-6 col-sm-6 col-md-6 mb-2" *ngFor="let org of resumeDetail.organizations; index as i">
+    <h5 class="text-dark m-0"> <strong>{{org.name}} </strong></h5>
+    <h5 class="text-dark m-0">{{org.designation}}</h5>
+    <p class="text-muted m-0 font-italic">{{org.fromDate | date : 'MM/yyyy'}} - {{org.toDate == null ? 'Present' : (org.toDate | date : 'MM/yyyy')  }} </p>
+  </div>
+  </div>
+
+  <!-- <h4 class="text-dark text-perfectBlue mb-2"> <strong>LANGUAGES </strong> </h4>
+  <div class="row">
+  <section class="col-lg-2 col-sm-6 col-md-3" *ngFor="let lan of resumeDetail.knownLanguages; index as i">
+
+    <h5 class="text-dark m-0"> <strong>{{lan.name}} </strong></h5>
+    <span class="text-perfectBlue font-italic font-weight-normal m-0">{{lan.level}}</span>
+
+  </section>
+</div> -->
+  
+<!-- Personal Detail -->
+  <h4 class="text-dark text-perfectBlue mt-4 mb-2"> <strong>PERSONAL DETAIL </strong> </h4>
+  <div class="row">
+    <section class="col-lg-4 col-sm-4 col-md-4">
+      <strong>Date Of Birth </strong>
+    </section>
+    <section class="col-lg-8 col-sm-8 col-md-8">
+      {{resumeDetail.personalDetail.dateOfBirth | date : 'dd-MM-yyyy'}}
+    </section>
+  </div>
+  <div class="row">
+    <section class="col-lg-4 col-sm-4 col-md-4">
+      <strong>Address </strong>
+    </section>
+    <section class="col-lg-8 col-sm-8 col-md-8">
+      {{resumeDetail.personalDetail.permanentAddress}}
+    </section>
+  </div>
+  <div class="row">
+    <section class="col-lg-4 col-sm-4 col-md-4">
+      <strong>Gender </strong>
+    </section>
+    <section class="col-lg-8 col-sm-8 col-md-8">
+      {{resumeDetail.personalDetail.gender}}
+    </section>
+  </div>
+  <div class="row">
+    <section class="col-lg-4 col-sm-4 col-md-4">
+      <strong>Marital Status </strong>
+    </section>
+    <section class="col-lg-8 col-sm-8 col-md-8">
+      {{resumeDetail.personalDetail.maritalStatus }}
+    </section>
+  </div>
+  <div class="row">
+    <section class="col-lg-4 col-sm-4 col-md-4">
+      <strong>Language Known </strong>
+    </section>
+    <section class="col-lg-8 col-sm-8 col-md-8">
+      {{resumeDetail.personalDetail.languageKnown }}
+    </section>
+  </div>
+  <div class="row">
+    <section class="col-lg-4 col-sm-4 col-md-4">
+      <strong>Nationality </strong>
+    </section>
+    <section class="col-lg-8 col-sm-8 col-md-8">
+      {{resumeDetail.personalDetail.nationality }}
+    </section>
+  </div>
+  <div class="row">
+    <section class="col-lg-4 col-sm-4 col-md-4">
+      <strong>Hobbies </strong>
+    </section>
+    <section class="col-lg-8 col-sm-8 col-md-8">
+      {{resumeDetail.personalDetail.hobbies }}
+    </section>
+  </div>
+  
+</div>
